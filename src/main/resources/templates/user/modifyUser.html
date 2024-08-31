@@ -1,0 +1,23 @@
+<div th:fragment="form-user-modify" class="professeur" id="form-user-modify" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <span class="closemodal" onclick="showSection(event, 'page-utilisateur')">< Retour</span>
+        <h2>Modifier un Utilisateur</h2>
+    </div>
+    <form th:action="@{/users/update}" th:object="${user}" method="post" class="form-add">
+        <div class="form-container">
+            <div class="justify-center">
+                <label for="pseudo">Nom</label>
+                <input th:field="*{pseudo}" type="text" id="pseudo" placeholder="Entrez le nouveau pseudo">
+
+                <label for="password">Prénom</label>
+                <input th:field="*{password}" type="password" id="password" placeholder="******">
+
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button class="btn cancel" type="button" onclick="closemodal()">Annuler</button>
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

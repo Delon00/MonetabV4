@@ -1,0 +1,44 @@
+<div class="eleves" th:fragment="eleves-content" id="form-eleve" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="board-top">
+        <h1>Elèves <span>(<span th:text="${studentCount}"></span>)</span></h1>
+        <a class="modal-open" href="#form-eleve" onclick="showSection(event, 'form-eleve')">
+            <span class="plus">+</span>Nouvel eleve
+        </a>
+    </div>
+    <div class="tableau">
+
+        <div class="title row">
+            <p>Nom</p>
+            <p>Prénom</p>
+            <p>Matricule</p>
+            <p>Date Naissance</p>
+            <p>Téléphone</p>
+            <p class="action">Actions</p>
+        </div>
+
+
+        <div th:each="student : ${students}" class="row">
+            <p th:text="${student.lastName}"></p>
+            <p th:text="${student.firstName}"></p>
+            <!--<p th:text="${student.genre}"></p>
+            <p th:text="${student.classe}"></p>-->
+            <p th:text="${student.matricule}"></p>
+            <p th:text="${student.birthday}"></p>
+            <p th:text="${student.phoneNumber}"></p>
+            <button type="button" th:onclick="'openModify(' + ${student.id} + ')'">Modifier</button>
+            <button type="button" th:onclick="'opendelete(' + ${student.id} + ')'">Supprimer</button>
+        </div>
+    </div>
+
+
+    <div class="delete-modal">
+        <div class="delete-modal-content">
+            <h2>Attention!!!</h2>
+            <p>Voulez-vous vraiment supprimer cet élève</p>
+            <div class="flex">
+                <button class="modal-btn-delete non" type="button" onclick="closedelete()">Non</button>
+                <button class="modal-btn-delete oui" type="button" onclick="closedelete()">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>

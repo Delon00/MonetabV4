@@ -1,0 +1,21 @@
+<div th:fragment="utilisateurs-content" class="utilisateur" id="page-utilisateur"
+     xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="board-top">
+        <h1>Utilisateurs <span>(2)</span></h1>
+        <div class="modal-open"><span class="plus" onclick="openmodal()">+</span>Nouvel utilisateur</div>
+    </div>
+    <div class="tableau">
+        <div class="title row">
+            <p>Pseudo</p>
+            <p>Date de création</p>
+            <p>Actions</p>
+        </div>
+        <div th:each="user : ${users}" class="row">
+            <p th:text="${user.pseudo}"></p>
+            <p th:text="${user.dateCreation}"></p>
+            <button type="button" onclick="openModifyUser()">Modifier</button>
+        </div>
+    </div>
+
+
+</div>

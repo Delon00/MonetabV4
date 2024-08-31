@@ -1,0 +1,54 @@
+<div th:fragment="form-eleve-modify" class="professeur" id="form-eleve-modify" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <span class="closemodal" onclick="showSection(event, 'page-eleve')">< Retour</span>
+        <h2>Modifier un Eleve</h2>
+    </div>
+    <form th:action="@{/students/update}" th:object="${student}" method="post" class="form-add">
+        <div class="form-container">
+            <div class="left-form">
+                <label for="name">Nom</label>
+                <input type="hidden" th:field="*{id}" />
+                <input th:field="*{nom}"name="name" type="text" id="name" placeholder="Entrez le nom">
+
+                <label for="firstname">Prénom</label>
+                <input th:field="*{prenom}"name="firstname" type="text" id="firstname" placeholder="Entrez le prénom">
+
+                <div class="radio-group">
+                    <label>
+                        <input th:field="*{genre}" type="radio" name="gender" value="H"> Homme
+                    </label>
+                    <label>
+                        <input th:field="*{genre}"type="radio" name="gender" value="F"> Femme
+                    </label>
+                </div>
+
+                <label for="matricule">Matricule</label>
+                <input th:field="*{matricule}"name="matricule" type="text" id="matricule" placeholder="Entrez le matricule">
+
+
+            </div>
+
+            <div class="right-form">
+                <label for="classe">Classe</label>
+                <select th:field="*{classe}"name="classe" id="classe">
+                    <option value="">---Sélectionner la classe---</option>
+                    <option value="2nd">2nd</option>
+                    <option value="1re">1re</option>
+                    <option value="Tle">Tle</option>
+                </select>
+
+                <label for="tel">Numéro de téléphone</label>
+                <input th:field="*{tel}"type="tel" name="tel" id="tel" placeholder="Entrez le numéro de téléphone">
+
+                <label for="date">Date de naissance</label>
+                <input th:field="*{age}"type="date" name="date" id="date">
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn cancel" type="button">Annuler</button>
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

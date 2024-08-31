@@ -1,0 +1,56 @@
+<div th:fragment="form-professeur" class="professeur" id="form-professeur" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <span class="closemodal" onclick="showSection(event, 'page-professeur')">< Retour</span>
+        <h2>Ajouter un Professeur</h2>
+    </div>
+
+    <form th:action="@{/teachers}" th:object="${teacher}" method="post" class="form-add">
+        <div class="form-container">
+
+            <div class="left-form">
+                <label for="name">Nom</label>
+                <input th:field="*{lastName}" type="text" id="name" placeholder="Entrez le nom">
+
+                <label for="firstname">Prénom</label>
+                <input th:field="*{firstName}" type="text" id="firstname" placeholder="Entrez le prénom">
+
+                <!--<div class="radio-group">
+                    <label>
+                        <input th:field="*{genre}" type="radio" value="H"> Homme
+                    </label>
+                    <label>
+                        <input th:field="*{genre}" type="radio" value="F"> Femme
+                    </label>
+                </div>-->
+
+                <label for="speciality">Spécialité</label>
+                <input th:field="*{speciality}" type="text" id="speciality" placeholder="Entrez la spécialité du professeur">
+            </div>
+
+            <div class="right-form">
+                <label>Disponibilité</label>
+                <div class="radio-group">
+                    <label>
+                        <input th:field="*{available}" type="radio" value="true"> Oui
+                    </label>
+                    <label>
+                        <input th:field="*{available}" type="radio" value="false"> Non
+                    </label>
+                </div>
+
+                <label for="tel">Numéro de téléphone</label>
+                <input th:field="*{phoneNumber}" type="tel" id="tel" placeholder="Entrez le numéro de téléphone">
+
+                <label for="birthday">Date de naissance</label>
+                <input th:field="*{birthday}" type="text" id="birthday">
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn cancel" type="button" onclick="closemodal()">Annuler</button>
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

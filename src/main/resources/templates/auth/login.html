@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etab</title>
+    <link rel="stylesheet"  th:href="@{css/style.css}">
+</head>
+<body>
+<section class="login">
+    <form id="loginForm" class="login-form" th:action="@{login}" method="post">
+        <h1>Mon Etab</h1>
+        <label for="identifiant">Identifiant</label>
+        <input type="text" name="username" id="identifiant" placeholder="Entrez votre identifiant">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" placeholder="********">
+        <p id="error-message" th:if="${error}" th:text="${error}"></p>
+        <button type="submit" class="login-btn">Connexion</button>
+    </form>
+</section>
+<script th:src="@{js/js.js}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div th:fragment="form-teacher-modify" class="professeur" id="form-teacher-modify" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <span class="closemodal" onclick="showSection(event, 'page-professeur')">< Retour</span>
+        <h2>Modifier un Eleve</h2>
+    </div>
+    <form th:action="@{/teachers/update}" th:object="${teacher}" method="post" class="form-add">
+        <div class="form-container">
+            <div class="left-form">
+                <label for="name">Nom</label>
+                <input th:field="*{nom}" type="text" id="name" placeholder="Entrez le nom">
+
+                <label for="firstname">Prénom</label>
+                <input th:field="*{prenom}" type="text" id="firstname" placeholder="Entrez le prénom">
+
+                <div class="radio-group">
+                    <label>
+                        <input th:field="*{genre}" type="radio" value="H"> Homme
+                    </label>
+                    <label>
+                        <input th:field="*{genre}" type="radio" value="F"> Femme
+                    </label>
+                </div>
+
+                <label for="matiere">Matière</label>
+                <input th:field="*{matiere}" type="text" id="matiere" placeholder="Entrez la matière du professeur">
+            </div>
+
+            <div class="right-form">
+                <label>Vacant</label>
+                <div class="radio-group">
+                    <label>
+                        <input th:field="*{vacant}" type="radio" value="true"> Oui
+                    </label>
+                    <label>
+                        <input th:field="*{vacant}" type="radio" value="false"> Non
+                    </label>
+                </div>
+
+                <label for="tel">Numéro de téléphone</label>
+                <input th:field="*{tel}" type="tel" id="tel" placeholder="Entrez le numéro de téléphone">
+
+                <label for="age">Date de naissance</label>
+                <input th:field="*{age}" type="date" id="age">
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn cancel" type="button" onclick="closemodal()">Annuler</button>
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

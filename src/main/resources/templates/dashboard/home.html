@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard|Mon Etab</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+    <section class="dashboard">
+        <div class="sidebar">
+            <div>
+                <h1>Mon Etab</h1>
+                <hr>
+                <ul class="sidebar-link-container">
+                    <li><a class="sidebar-link current" href="#page-dash" onclick="showSection(event, 'page-dash')">Tableau de bord</a></li>
+                    <li><a class="sidebar-link" href="#page-eleve" onclick="showSection(event, 'page-eleve')">Élèves</a></li>
+                    <li><a class="sidebar-link" href="#page-professeur" onclick="showSection(event, 'page-professeur')">Professeur</a></li>
+                    <li><a class="sidebar-link" href="#page-utilisateur" onclick="showSection(event, 'page-utilisateur')">Utilisateur</a></li>
+                    <li><a class="sidebar-link" href="#page-rapport" onclick="showSection(event, 'page-rapport')">Rapport</a></li>
+                </ul>
+            </div>
+            <div>
+                <hr>
+                <a class="sidebar-link logout" th:href="@{/}" >Deconnexion</a>
+            </div>
+        </div>
+        <div class="page-dash" id="main-content"></div>
+    </section>
+    <script th:src="@{js/js.js}"></script>
+    <script th:src="@{js/ajax.js}"></script>
+</body>
+</html>
