@@ -35,6 +35,8 @@ public class DashboardController {
         long teacherCount = teacherService.countTeachers();
         model.addAttribute("teacherCount", teacherCount);
 
+        long userCount = userService.countUsers();
+        model.addAttribute("userCount", userCount);
         return "dashboard/dashboard";
     }
 

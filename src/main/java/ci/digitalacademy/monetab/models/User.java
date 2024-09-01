@@ -2,6 +2,7 @@ package ci.digitalacademy.monetab.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ public class User {
 
     private String pseudo;
     private String password;
-    private Date creationDate;
+    private Instant creationDate;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

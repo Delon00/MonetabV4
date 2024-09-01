@@ -43,10 +43,14 @@ public class StudentController {
     }
 
     @PostMapping
-    public String saveStudent(StudentDTO student, Model model) {
+    public String saveStudent(StudentDTO studentDTO, Model model) {
         log.debug("Request to save student");
-        //student.setBirthday(Instant.now());
-        studentService.save(student);
+        //studentDTO.setBirthday(Instant.now());
+        //Instant birthdayInstant = convertToInstant(studentDTO.getBirthday());
+        //studentDTO.setBirthday(birthdayInstant);
+
+
+        studentService.save(studentDTO);
         model.addAttribute("message", "Élève ajouté avec succès!");
 
         return "dashboard/home";
@@ -67,10 +71,10 @@ public class StudentController {
 
 
     @PostMapping("/update")
-    public String updateStudent(@ModelAttribute("student") StudentDTO student, Model model) {
+    public String updateStudent(@ModelAttribute("student") StudentDTO studentDTO, Model model) {
         log.debug("Request to update student");
         //student.setDateCreation(Instant.now());
-        studentService.update(student);
+        studentService.update(studentDTO);
         model.addAttribute("message", "Élève mis à jour avec succès!");
 
         return "redirect:/home";

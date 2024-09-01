@@ -1,8 +1,5 @@
 package ci.digitalacademy.monetab.controller;
 
-
-import ci.digitalacademy.monetab.models.Student;
-import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.models.User;
 
 import ci.digitalacademy.monetab.services.UserService;
@@ -30,6 +27,9 @@ public class UserController {
         log.debug("Request to show user list");
         List<UserDTO> userList = userService.findAll();
         model.addAttribute("users", userList);
+
+        long userCount = userService.countUsers();
+        model.addAttribute("userCount", userCount);
         return "user/list";
     }
 
@@ -44,7 +44,7 @@ public class UserController {
     @PostMapping
     public String saveUser(UserDTO user, Model model) {
         log.debug("Request to save user");
-        //user.setDateCreation(Instant.now());
+        user.setCreationDate(Instant.now());
         userService.save(user);
         model.addAttribute("message", "Utilisateur ajouté avec succès!");
 

@@ -3,6 +3,7 @@ package ci.digitalacademy.monetab.models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -21,7 +22,7 @@ public class Person {
     private String firstName;
 
     @Column(nullable = false)
-    private Instant birthday;
+    private String birthday;
 
     @Column(nullable = false)
     private String phoneNumber;

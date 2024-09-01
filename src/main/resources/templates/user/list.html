@@ -1,8 +1,10 @@
 <div th:fragment="utilisateurs-content" class="utilisateur" id="page-utilisateur"
      xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="board-top">
-        <h1>Utilisateurs <span>(2)</span></h1>
-        <div class="modal-open"><span class="plus" onclick="openmodal()">+</span>Nouvel utilisateur</div>
+        <h1>Utilisateurs <span>(<span th:text="${userCount}"></span>)</span></h1>
+        <a class="modal-open" href="#form-user" onclick="showSection(event, 'form-user')">
+            <span class="plus">+</span>Nouvel utilisateur
+        </a>
     </div>
     <div class="tableau">
         <div class="title row">

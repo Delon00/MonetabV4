@@ -22,7 +22,7 @@
             <p th:text="${teacher.firstName}"></p>
             <p th:text="${teacher.speciality}"></p>
             <p th:text="${teacher.available} ? 'Oui' : 'Non'"></p>
-            <p th:text="${teacher.birthay}"></p>
+            <p th:text="${teacher.birthday}"></p>
             <p th:text="${teacher.phoneNumber}"></p>
             <button type="button" th:onclick="'openModifyTeacher(' + ${teacher.id} + ')'">Modifier</button>
             <button type="button" th:onclick="'openDeleteTeacher(' + ${teacher.id} + ')'">Supprimer</button>

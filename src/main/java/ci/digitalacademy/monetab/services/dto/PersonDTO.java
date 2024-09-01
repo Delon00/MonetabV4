@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class PersonDTO {
     private Long id;
-    private Instant birthday;
+    private String birthday;
     private String firstName;
     private String lastName;
     private String phoneNumber;
