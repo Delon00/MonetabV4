@@ -42,10 +42,10 @@ public class UserController {
     }
 
     @PostMapping
-    public String saveUser(UserDTO user, Model model) {
+    public String saveUser(UserDTO userDTO, Model model) {
         log.debug("Request to save user");
-        user.setCreationDate(Instant.now());
-        userService.save(user);
+        userDTO.setCreationDate(Instant.now());
+        userService.save(userDTO);
         model.addAttribute("message", "Utilisateur ajouté avec succès!");
 
         return "dashboard/home";
@@ -66,10 +66,10 @@ public class UserController {
 
 
     @PostMapping("/update")
-    public String updateStudent(@ModelAttribute("user") UserDTO user, Model model) {
+    public String updateStudent(@ModelAttribute("user") UserDTO userDTO, Model model) {
         log.debug("Request to update user");
-        //user.setDateCreation(Instant.now());
-        userService.update(user);
+        userDTO.setCreationDate(Instant.now());
+        userService.update(userDTO);
         model.addAttribute("message", "Utilisateur mis à jour avec succès!");
 
         return "redirect:/home";

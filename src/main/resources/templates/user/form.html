@@ -5,14 +5,14 @@
     </div>
     <form th:action="@{/users}" th:object="${user}" method="post" class="form-add">
         <div class="form-container">
-            <div class="justify-center">
-                <input type="hidden" th:field="*{id}" />
-                <label for="pseudo">Nom</label>
+            <div class="flex-column items-center">
+                <label for="pseudo">Pseudo</label>
                 <input th:field="*{pseudo}" type="text" id="pseudo" placeholder="Entrez le nouveau pseudo">
 
-                <label for="password">Prénom</label>
+                <label for="password">Mot de passe</label>
                 <input th:field="*{password}" type="password" id="password" placeholder="******">
-
+                <label for="password">Confirmez le mot de passe</label>
+                <input th:field="*{password}" type="password" id="password-confirm" placeholder="******">
             </div>
         </div>
         <div class="form-buttons">

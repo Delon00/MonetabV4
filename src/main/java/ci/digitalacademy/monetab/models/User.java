@@ -15,6 +15,8 @@ public class User {
 
     private String pseudo;
     private String password;
+
+    //@Column(name = "creation_date")
     private Instant creationDate;
 
     @ManyToOne
