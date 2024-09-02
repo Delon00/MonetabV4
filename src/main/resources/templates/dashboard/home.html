@@ -13,7 +13,10 @@
     <section class="dashboard">
         <div class="sidebar">
             <div>
-                <h1>Mon Etab</h1>
+                <div class="section-Logo">
+                    <img th:src="${school.urlLogo}" alt="logo" class="logoApp">
+                    <h1 th:text="${school.name}">Mon Etab</h1>
+                </div>
                 <hr>
                 <ul class="sidebar-link-container">
                     <li><a class="sidebar-link current" href="#page-dash" onclick="showSection(event, 'page-dash')">Tableau de bord</a></li>

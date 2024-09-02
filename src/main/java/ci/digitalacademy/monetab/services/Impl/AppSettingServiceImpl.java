@@ -61,4 +61,27 @@ public class AppSettingServiceImpl implements AppSettingService {
         log.debug("Request to delete AppSetting with id: {}", id);
         appSettingRepository.deleteById(id);
     }
+
+    @Override
+    public AppSettingDTO initApp(AppSettingDTO appSettingDTO) {
+        log.debug("Request to init app {}", appSettingDTO);
+        AppSettingDTO settingDTO = existingParameter();
+        if (settingDTO == null){
+            return save(appSettingDTO);
+        }
+        return settingDTO;
+    }
+    @Override
+    public AppSettingDTO existingParameter() {
+        log.debug("Request to check existing Parameter");
+        List<AppSettingDTO> appSettingDTO = findAll();
+        return appSettingDTO.stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public List<AppSettingDTO> findAllBySmtpUsername(String smtpUsername) {
+        return List.of();
+    }
+
+
 }

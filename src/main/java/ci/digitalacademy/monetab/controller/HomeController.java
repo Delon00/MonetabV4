@@ -1,12 +1,16 @@
 package ci.digitalacademy.monetab.controller;
 
-import ci.digitalacademy.monetab.models.Teacher;
+import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.StudentService;
-import ci.digitalacademy.monetab.services.TeacherService;
-import ci.digitalacademy.monetab.services.UserService;
+
+import ci.digitalacademy.monetab.services.AppSettingService;
+
+import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
+import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,60 +18,38 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
 
+    @Autowired
     private final StudentService studentService;
-    private final TeacherService teacherService;
-    private final UserService userService;
+    @Autowired
+    private final AppSettingService appSettingService;
+    @Autowired
+    private final SchoolService schoolService;
 
+    
     @GetMapping
-    public String showDashboard(Model model) {
-        long studentCount = studentService.countStudents();
-        model.addAttribute("studentCount", studentCount);
-        return "dashboard/home";
+    public String index(Model model){
+        if (appSettingService.existingParameter() == null) {
+            model.addAttribute("appsettings", new AppSettingDTO());
+            return "init/appInit";
+        } else if (schoolService.existingSchool()==null) {
+            model.addAttribute("school", new SchoolDTO());
+            return "init/schoolInit";
+        } else {return "redirect:auth";}
     }
 
-    /*@GetMapping("composant/{page}")
-    public String loadSection(@PathVariable("page") String page, Model model) {
-        List<Teacher> teacherList = teacherService.findAll();
-        List<User> userList = userService.findAll();
-        model.addAttribute("teachers", teacherList);
-        model.addAttribute("users", userList);
-        return "dashboard/composant/" + page;
-    }*/
 
+    @GetMapping("/home")
+    public String showDashboard(Model model) {
+        long studentCount = studentService.countStudents();
+        SchoolDTO schoolDTO = schoolService.existingSchool();
 
+        model.addAttribute("studentCount", studentCount);
+        model.addAttribute("school", schoolDTO);
 
-
-
-
-    /*@PostMapping("addTeacher")
-    public String addTeacher(
-            @RequestParam("name") String nom,
-            @RequestParam("firstname") String prenom,
-            @RequestParam("gender") String genre,
-            @RequestParam("matiere") String matiere,
-            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate age,
-            @RequestParam("vacant") Boolean vacant,
-            @RequestParam("tel") String tel,
-            Model model
-    ) {
-        Teacher teacher = new Teacher();
-        teacher.setNom(nom);
-        teacher.setPrenom(prenom);
-        teacher.setGenre(genre);
-        teacher.setAge(String.valueOf(age));
-        teacher.setMatiere(matiere);
-        teacher.setVacant(Boolean.valueOf(vacant));
-        teacher.setTel(tel);
-        teacher.setDateCreation(Instant.now());
-        teacherService.save(teacher);
-        model.addAttribute("message", "Professeur ajouté avec succès!");
-
-
-        return "redirect:/dashboard";
-    }*/
-
+        return "dashboard/home";
+    }
 
 }

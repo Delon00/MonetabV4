@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+<section class="init-section">
+    <p>Veuillez configurer l'application pour commencer à l'utiliser.</p>
+    <form th:action="@{/schoolsetting}" th:object="${school}" method="post" class="init-form">
+        <div class="init-form-container">
+
+            <label for="name">Nom de l'ecole</label>
+            <input th:field="*{name}"name="name" type="text" id="name" placeholder="Entrez le nom de l'école">
+
+            <label for="urlLogo">Logo url</label>
+            <input th:field="*{urlLogo}"name="urlLogo" type="text" id="urlLogo" placeholder="Entrez l'url de logo de l'app">
+
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn cancel" type="button">Annuler</button>
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

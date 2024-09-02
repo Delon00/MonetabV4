@@ -20,4 +20,8 @@ public class School {
 
     @OneToMany(mappedBy = "school")
     private List<Teacher> teachers;
+
+    @OneToOne
+    @JoinColumn(name = "app_setting_id")
+    private AppSetting appSetting;
 }

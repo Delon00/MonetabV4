@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+    <section class="init-section">
+       <h1>Bienvenue dans l'application</h1>
+        <p>Veuillez configurer l'application pour commencer à l'utiliser.</p>
+        <form th:action="@{/appsetting}" th:object="${appsettings}" method="post" class="init-form">
+            <div class="init-form-container">
+
+                    <label for="name">Smtp server</label>
+                    <input th:field="*{smtpServer}"name="smtpServer" type="text" id="name" placeholder="Entrez le serveur smtp">
+
+                    <label for="smtpPort">Smtp port</label>
+                    <input th:field="*{smtpPort}"name="smtpPort" type="text" id="smtpPort" placeholder="587">
+
+                    <label for="smtpUsername">Smtp Username</label>
+                    <input th:field="*{smtpUsername}"name="smtpUsername" type="text" id="smtpUsername" placeholder="Entrez le username smtp">
+
+                    <label for="smtpPassword">Mot de passe Smtp</label>
+                    <input th:field="*{smtpPassword}"name="smtpUsername" type="text" id="smtpPassword" placeholder="Entrez le mot de passe smtp">
+            </div>
+
+            <div class="form-buttons">
+                <button class="btn cancel" type="button">Annuler</button>
+                <button class="btn save" type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

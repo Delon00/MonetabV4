@@ -5,6 +5,10 @@
             <span class="plus">+</span>Nouvel eleve
         </a>
     </div>
+    <div class="search-bar">
+        <input type="text" name="" id="">
+        <img th:src="@{images/search.png}" alt="" class="btn-search">
+    </div>
     <div class="tableau">
 
         <div class="title row">
@@ -13,6 +17,7 @@
             <p>Matricule</p>
             <p>Date Naissance</p>
             <p>Téléphone</p>
+            <p>Tél.Parent</p>
             <p class="action">Actions</p>
         </div>
 
@@ -20,11 +25,12 @@
         <div th:each="student : ${students}" class="row">
             <p th:text="${student.lastName}"></p>
             <p th:text="${student.firstName}"></p>
-            <!--<p th:text="${student.genre}"></p>
-            <p th:text="${student.classe}"></p>-->
+            <!--<p th:text="${student.classe}"></p>-->
             <p th:text="${student.matricule}"></p>
             <p th:text="${student.birthday}"></p>
             <p th:text="${student.phoneNumber}"></p>
+            <p th:text="${student.phoneNumberFather}"></p>
+
             <button type="button" th:onclick="'openModify(' + ${student.id} + ')'">Modifier</button>
             <button type="button" th:onclick="'opendelete(' + ${student.id} + ')'">Supprimer</button>
         </div>

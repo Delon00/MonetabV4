@@ -63,4 +63,15 @@ public class UserServiceImpl implements UserService {
     public long countUsers() {
         return userRepository.count();
     }
+
+    @Override
+    public List<UserDTO> initUser(List<UserDTO> users) {
+        List<UserDTO > usersDto = findAll();
+        if (usersDto.isEmpty()){
+            users.forEach(user->{
+                save(user);
+            });
+        }
+        return findAll();
+    }
 }

@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,4 +58,25 @@ public class SchoolServiceImpl implements SchoolService {
     public void delete(Long id) {
         schoolRepository.deleteById(id);
     }
+
+    @Override
+    public SchoolDTO initSchool(SchoolDTO schoolDTO) {
+        log.debug("Request to init school {}", schoolDTO);
+        SchoolDTO school = existingSchool();
+        if (Objects.isNull(school)){
+            return save(schoolDTO);
+        }
+        return school;
+    }
+
+    @Override
+    public SchoolDTO existingSchool() {
+        log.debug("Request to check existing school");
+        List<SchoolDTO> schoolDTO = findAll();
+        return schoolDTO.stream().findFirst().orElse(null);
+    }
+
+
+
+
 }

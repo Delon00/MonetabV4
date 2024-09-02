@@ -19,4 +19,8 @@ public class AppSetting implements Serializable {
     private int smtpPort;
     private String smtpUsername;
     private String smtpPassword;
+
+    @OneToOne(mappedBy = "appSetting", cascade = CascadeType.ALL)
+    private School school;
 }
+
