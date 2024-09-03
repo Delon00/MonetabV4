@@ -48,7 +48,7 @@ public class UserController {
         userService.save(userDTO);
         model.addAttribute("message", "Utilisateur ajouté avec succès!");
 
-        return "dashboard/home";
+        return "redirect:/home";
         //return "student/form :: form-eleve";
     }
 

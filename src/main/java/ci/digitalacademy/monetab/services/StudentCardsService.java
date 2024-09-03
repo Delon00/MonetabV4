@@ -11,4 +11,5 @@ public interface StudentCardsService {
     StudentCardsDTO update(StudentCardsDTO studentCardsDTO);
     List<StudentCardsDTO> findAll();
     void delete(Long id);
+    long countStudentCards();
 }

@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="eleves" th:fragment="page-carte-eleve" id="page-carte-eleve" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="board-top">
+        <h1>Carte élèves <span>(<span th:text="${cardCount}"></span>)</span></h1>
+        <a class="modal-open" href="#form-eleve" onclick="showSection(event, 'form-carte-eleve')">
+            <span class="plus">+</span>Nouvel carte
+        </a>
+    </div>
+    <div class="search-bar">
+        <input type="text" name="" id="">
+        <img th:src="@{images/search.png}" alt="" class="btn-search">
+    </div>
+    <div class="tableau">
 
-</body>
-</html>
+        <div class="title row">
+            <p>Références</p>
+            <p>Date</p>
+            <p>Date expiration</p>
+            <p>eleve</p>
+            <p class="action">Actions</p>
+        </div>
+
+
+        <div th:each="finalstudentCards : ${studentCard}" class="row">
+            <p th:text="${studentCard.reference}"></p>
+            <p th:text="${studentCard.issueDate}"></p>
+            <p th:text="${studentCard.expirationDate}"></p>
+            <!--<p th:text="${studentCard.student}"></p>-->
+
+
+            <button type="button" th:onclick="'openModify(' + ${studentCard.id} + ')'">Modifier</button>
+            <button type="button" th:onclick="'opendelete(' + ${studentCard.id} + ')'">Supprimer</button>
+        </div>
+    </div>
+
+
+    <div class="delete-modal">
+        <div class="delete-modal-content">
+            <h2>Attention!!!</h2>
+            <p>Voulez-vous vraiment supprimer cet élève</p>
+            <div class="flex">
+                <button class="modal-btn-delete non" type="button" onclick="closedelete()">Non</button>
+                <button class="modal-btn-delete oui" type="button" onclick="closedelete()">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>

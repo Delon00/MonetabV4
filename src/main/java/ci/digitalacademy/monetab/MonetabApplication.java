@@ -35,13 +35,7 @@ public class MonetabApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 /*
-        RoleUserDTO user1 = new RoleUserDTO();
-        user1.setRole("admin");
-        RoleUserDTO user2 = new RoleUserDTO();
-        user2.setRole("user");
 
-        List<RoleUserDTO> roleUserDTO = List.of(user1,user2);
-        roleUserService.initRoles(roleUserDTO);
 
 
         AppSettingDTO appSettingDTO = new AppSettingDTO();
@@ -68,11 +62,6 @@ public class MonetabApplication implements CommandLineRunner {
         schoolDTO.setAppSetting(appSettingDTO);
         schoolService.initSchool(schoolDTO);
 
-        set<RoleUserDTO>
-        UserDTO userDTO = new UserDTO();
-        userDTO.setPseudo("admin");
-        userDTO.setPassword("admin");
-        userDTO.setCreationDate(Instant.now());
-        userDTO.setRole(roleUser);*/
+*/
     }
 }

@@ -11,4 +11,5 @@ public interface AbsenceService {
     AbsenceDTO update(AbsenceDTO absenceDTO);
     List<AbsenceDTO> findAll();
     void delete(Long id);
+    long countAbsences();
 }

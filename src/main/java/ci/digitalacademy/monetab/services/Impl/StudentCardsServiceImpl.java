@@ -63,4 +63,9 @@ public class StudentCardsServiceImpl implements StudentCardsService {
         log.debug("Request to delete StudentCard with id: {}", id);
         studentCardsRepository.deleteById(id);
     }
+
+    @Override
+    public long countStudentCards() {
+        return studentCardsRepository.count();
+    }
 }

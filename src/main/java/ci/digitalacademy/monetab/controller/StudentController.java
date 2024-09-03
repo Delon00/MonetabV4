@@ -53,7 +53,7 @@ public class StudentController {
         studentService.save(studentDTO);
         model.addAttribute("message", "Élève ajouté avec succès!");
 
-        return "dashboard/home";
+        return "redirect:/home";
         //return "student/form :: form-eleve";
     }
 

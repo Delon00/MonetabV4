@@ -18,7 +18,7 @@
         </div>
         <div th:each="user : ${users}" class="row">
             <p th:text="${user.pseudo}"></p>
-            <p th:text="${user.dateCreation}"></p>
+            <p th:text="${user.creationDate}"></p>
             <button type="button" onclick="openModifyUser()">Modifier</button>
         </div>
     </div>

@@ -61,4 +61,9 @@ public class AbsenceServiceImpl implements AbsenceService {
         log.debug("Request to delete Absence with id: {}", id);
         absenceRepository.deleteById(id);
     }
+
+    @Override
+    public long countAbsences() {
+        return absenceRepository.count();
+    }
 }

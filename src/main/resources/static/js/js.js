@@ -39,6 +39,10 @@ function loadSection(section) {
                break;
         case 'page-utilisateur':sectionUrl = 'users';
             break;
+        case 'page-absences':sectionUrl = 'absences';
+             break;
+        case 'page-carte-eleve':sectionUrl = 'studentcard';
+             break;
         case 'page-rapport':sectionUrl = 'reports';
             break;
         default:

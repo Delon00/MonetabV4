@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="eleves" th:fragment="page-absences" id="page-absences" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="board-top">
+        <h1>Absences <span>(<span th:text="${absenceCount}"></span>)</span></h1>
+        <a class="modal-open" href="#form-eleve" onclick="showSection(event, 'form-carte-eleve')">
+            <span class="plus">+</span>Ajouter une absence
+        </a>
+    </div>
+    <div class="search-bar">
+        <input type="text" name="" id="">
+        <img th:src="@{images/search.png}" alt="" class="btn-search">
+    </div>
+    <div class="tableau">
 
-</body>
-</html>
+        <div class="title row">
+            <p>Date d'absence</p>
+            <p>Nombre d'absence</p>
+            <p>Elève</p>
+            <p class="action">Actions</p>
+        </div>
+
+
+        <div th:each="absences : ${absence}" class="row">
+            <p th:text="${absence.absenceDate}"></p>
+            <p th:text="${absence.absenceNumber}"></p>
+            <p th:text="${absence.student}"></p>
+
+
+            <button type="button" th:onclick="'openModify(' + ${absence.id} + ')'">Modifier</button>
+            <button type="button" th:onclick="'opendelete(' + ${absence.id} + ')'">Supprimer</button>
+        </div>
+    </div>
+
+
+    <div class="delete-modal">
+        <div class="delete-modal-content">
+            <h2>Attention!!!</h2>
+            <p>Voulez-vous vraiment supprimer cet élève</p>
+            <div class="flex">
+                <button class="modal-btn-delete non" type="button" onclick="closedelete()">Non</button>
+                <button class="modal-btn-delete oui" type="button" onclick="closedelete()">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>
