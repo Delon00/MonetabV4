@@ -18,7 +18,7 @@ public class User {
 
     private Instant creationDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private RoleUser role;
 

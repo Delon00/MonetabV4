@@ -21,11 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class HomeController {
 
-    @Autowired
     private final StudentService studentService;
-    @Autowired
     private final AppSettingService appSettingService;
-    @Autowired
     private final SchoolService schoolService;
 
     

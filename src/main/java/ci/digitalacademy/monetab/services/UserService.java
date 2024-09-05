@@ -13,4 +13,5 @@ public interface UserService {
     void delete(Long id);
     long countUsers();
     List<UserDTO> initUser(List<UserDTO> users);
+
 }

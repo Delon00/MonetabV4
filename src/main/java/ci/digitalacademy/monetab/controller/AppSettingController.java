@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.services.AppSettingService;
 import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
 import ci.digitalacademy.monetab.services.dto.SchoolDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/appsetting")
 @Slf4j
+@RequiredArgsConstructor
 public class AppSettingController {
 
-    @Autowired
-    private AppSettingService appSettingService;
-    @Autowired
-    private  SchoolService schoolService;
+
+    private final AppSettingService appSettingService;
+    private final SchoolService schoolService;
 
     @PostMapping
     public String saveAppSettings(AppSettingDTO appSettingDTO, Model model){

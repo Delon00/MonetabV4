@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -19,4 +20,6 @@ public class RoleUser {
 
     @OneToMany(mappedBy = "role")
     private List<User> users;
+
+
 }

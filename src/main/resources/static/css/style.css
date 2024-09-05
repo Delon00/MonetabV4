@@ -67,6 +67,7 @@ label{
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid #000;
+    background-color:#000;
 }
 
 .modal-eleve-top{width:100% text-align:right;}
@@ -88,7 +89,7 @@ label{
 }
 .sidebar-link{
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-weight: 600;
 }
 .sidebar-link.current{color: blue;}
@@ -220,7 +221,7 @@ input[type="tel"],
 input[type="date"],
 input[type="password"],
 select {
-    width: 90%;
+    width: 100%;
     padding: 0.2rem;
     margin-bottom: 0.5rem;
     border: 1px solid #000;
@@ -266,6 +267,7 @@ input[type="radio"] {
 .btn.save {
     background-color: #000;
     color: #fff;
+    width:100%;
 }
 
 .btn:hover {
@@ -334,11 +336,15 @@ input[type="radio"] {
     font-size:2,5rem;
 }
 .init-form-container{
-
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
 }
 .init-form{
         margin: 0.5rem auto;
         padding: 20px;
+        min-width:300px;
         border: 1px solid #000;
         border-radius: 8px;
         background-color: #f9f9f9;
@@ -353,10 +359,14 @@ input[type="radio"] {
     padding:0.1rem 0rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin:2rem 0;
+    overflow:hidden;
 }
 .search-bar input{
     border:none;
     margin-bottom:0;
+}
+.search-bar input:focus{
+    border:none;
 }
 .btn-search{
     width:20px;
@@ -368,6 +378,7 @@ input[type="radio"] {
     justify-content:flex-start;
     align-items:center;
 }
+.section-logo h1{color:#fff;}
 .logoApp{
     width:50px;
     height:50px;

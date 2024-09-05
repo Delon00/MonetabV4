@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.services.AbsenceService;
 import ci.digitalacademy.monetab.services.StudentCardsService;
 import ci.digitalacademy.monetab.services.dto.AbsenceDTO;
 import ci.digitalacademy.monetab.services.dto.StudentCardsDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,10 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/absences")
+@RequiredArgsConstructor
 public class AbsencesController {
-    @Autowired
-    private AbsenceService absencesService;
+
+    private final AbsenceService absencesService;
 
     @GetMapping
     public String showListStudentCard(Model model){

@@ -5,7 +5,6 @@ import ci.digitalacademy.monetab.services.Impl.StudentServiceImpl;
 import ci.digitalacademy.monetab.services.Impl.UserServiceImpl;
 import ci.digitalacademy.monetab.services.RoleUserService;
 import ci.digitalacademy.monetab.services.SchoolService;
-import ci.digitalacademy.monetab.services.dto.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

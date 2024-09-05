@@ -11,7 +11,6 @@
         <p>Veuillez configurer l'application pour commencer à l'utiliser.</p>
         <form th:action="@{/appsetting}" th:object="${appsettings}" method="post" class="init-form">
             <div class="init-form-container">
-
                     <label for="name">Smtp server</label>
                     <input th:field="*{smtpServer}"name="smtpServer" type="text" id="name" placeholder="Entrez le serveur smtp">
 
@@ -26,7 +25,6 @@
             </div>
 
             <div class="form-buttons">
-                <button class="btn cancel" type="button">Annuler</button>
                 <button class="btn save" type="submit">Enregistrer</button>
             </div>
         </form>
