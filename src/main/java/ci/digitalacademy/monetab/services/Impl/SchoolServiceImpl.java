@@ -76,7 +76,4 @@ public class SchoolServiceImpl implements SchoolService {
         return schoolDTO.stream().findFirst().orElse(null);
     }
 
-
-
-
 }

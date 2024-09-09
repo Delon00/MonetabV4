@@ -1,13 +1,15 @@
 <div th:fragment="rapports-content" class="rapport" id="page-rapport" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Rapport</h1>
-    <select name="" id="">
-        <option value="">--- Selectionner une option ---</option>
-        <option value="">Liste des élèves</option>
-        <option value="">Liste des professeurs</option>
-        <option value="">Liste des utilisateurs</option>
-    </select>
-    <div>
-        <button type="submit">Générer format PDF</button>
-        <button type="submit">Générer format Excel</button>
-    </div>
+    <form th:action="@{/reports}" method="post">
+        <select name="reportType" id="reportType">
+            <option value="">--- Sélectionner une option ---</option>
+            <option value="students">Liste des élèves</option>
+            <option value="teachers">Liste des professeurs</option>
+            <option value="users">Liste des utilisateurs</option>
+        </select>
+        <div>
+            <button type="submit" name="format" value="pdf">Générer format PDF</button>
+            <button type="submit" name="format" value="excel">Générer format Excel</button>
+        </div>
+    </form>
 </div>

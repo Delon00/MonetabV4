@@ -1,0 +1,21 @@
+<div th:fragment="school-parametre" class="professeur" id="school-parametre" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <h2>Modification des parametres de l'application</h2>
+    </div>
+    <form th:action="@{/schoolsetting/updateSchoolSetting}" th:object="${school}" method="post" class="init-form-update">
+        <div class="init-form-container">
+            <label for="name">Nom de l'ecole</label>
+            <input type="hidden" th:field="*{id}" />
+            <input th:field="*{name}"name="name" type="text" id="name" th:placeholder="${school.name}">
+
+            <label for="urlLogo">Logo url</label>
+            <input th:field="*{urlLogo}"name="urlLogo" type="text" id="urlLogo" placeholder="Entrez l'url de logo de l'app">
+
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn save" type="submit">Enregistrer</button>
+        </div>
+    </form>
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

@@ -29,15 +29,15 @@ public class DomainUserDetailService implements UserDetailsService {
         if(user.isEmpty()){
             throw new IllegalArgumentException("Utilisateur non trouvé");
         }
-        final List<GrantedAuthority> grantedAuthorities = List.of(
+        /*final List<GrantedAuthority> grantedAuthorities = List.of(
                 new SimpleGrantedAuthority(user.get().getRole().getRole())
-        );;
+        );*/
 
         return user.map(userRecover->org.springframework.security.core.userdetails.User.builder()
                 .username(userRecover.getPseudo())
                 .password(userRecover.getPassword())
-                .authorities(grantedAuthorities)
-                .roles()
+                //.authorities(grantedAuthorities)
+                //.roles()
                 .build()).orElseThrow(()-> new IllegalArgumentException("Utilisateur non trouvé"));
     }
 }

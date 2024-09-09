@@ -5,5 +5,5 @@ import ci.digitalacademy.monetab.services.dto.StudentDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface StudentMapper extends EntityMapper<StudentDTO , Student>{
+    public interface StudentMapper extends EntityMapper<StudentDTO , Student>{
 }

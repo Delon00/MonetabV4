@@ -43,6 +43,8 @@ public class AppSettingServiceImpl implements AppSettingService {
                 .map(existingAppSetting -> {
                     existingAppSetting.setSmtpUsername(appSettingDTO.getSmtpUsername());
                     existingAppSetting.setSmtpPort(appSettingDTO.getSmtpPort());
+                    existingAppSetting.setSmtpServer(appSettingDTO.getSmtpServer());
+                    existingAppSetting.setSmtpPassword(appSettingDTO.getSmtpPassword());
                     return save(existingAppSetting);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("AppSetting not found with id: " + appSettingDTO.getId()));

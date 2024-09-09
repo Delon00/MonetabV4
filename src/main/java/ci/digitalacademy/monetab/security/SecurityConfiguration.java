@@ -1,10 +1,11 @@
-package ci.digitalacademy.monetab.config;
+package ci.digitalacademy.monetab.security;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -17,17 +18,20 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers("/css/**").permitAll() // Allow access to static resources
-                        .requestMatchers("/icon/**").permitAll() // Allow access to static resources
-                        .requestMatchers("/img/**").permitAll() // Allow access to static resources
-                        .requestMatchers("/public/**").permitAll() // Allow access to public resources
-                        .requestMatchers("/app-setting").permitAll() // Allow access to specific endpoints
-                        .requestMatchers("/school-setting").permitAll() // Allow access to specific endpoints
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/icon/**").permitAll()
+                        .requestMatchers("/images/**").permitAll()
+                        .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/app-setting").permitAll()
+                        .requestMatchers("/school-setting").permitAll()
+                        .requestMatchers("/api/students").permitAll()
+                        .requestMatchers("/api/students/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                        .loginPage("/auth").permitAll()
-                        .defaultSuccessUrl("/home", true)
+                        .loginPage("/login").permitAll()
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true")
                 )
                 .logout(logout -> logout
@@ -38,5 +42,10 @@ public class SecurityConfiguration {
                         .permitAll()
                 );
         return http.build();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

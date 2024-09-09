@@ -28,11 +28,13 @@
                     <li><a class="sidebar-link" href="#page-absences" onclick="showSection(event, 'page-absences')">Absences</a></li>
                     <li><a class="sidebar-link" href="#page-carte-eleve" onclick="showSection(event, 'page-carte-eleve')">Carte élèves</a></li>
                     <li><a class="sidebar-link" href="#page-rapport" onclick="showSection(event, 'page-rapport')">Rapport</a></li>
+                    <li><a class="sidebar-link" href="#app-parametre" onclick="showSection(event, 'app-parametre')">Parametre de l'application</a></li>
+                    <li><a class="sidebar-link" href="#school-parametre" onclick="showSection(event, 'school-parametre')">Parametre de l'école</a></li>
                 </ul>
             </div>
             <div>
                 <hr>
-                <a class="sidebar-link logout" th:href="@{/}" >Deconnexion</a>
+                <a class="sidebar-link logout" th:href="@{/logout}" >Deconnexion</a>
             </div>
         </div>
         <div class="page-dash" id="main-content"></div>

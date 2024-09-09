@@ -1,0 +1,30 @@
+<div th:fragment="app-parametre" class="professeur" id="app-parametre" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="add-form-top">
+        <h2>Modification des parametres de l'application</h2>
+    </div>
+    <form th:action="@{/appsetting/updateAppSetting}" th:object="${appsetting}" method="post" class="init-form-update">
+        <div class="init-form-container">
+            <input type="hidden" th:field="*{id}" />
+            <label for="name">Smtp server</label>
+            <input th:field="*{smtpServer}" name="smtpServer" type="text" id="name"
+                   th:placeholder="${appsetting.smtpServer}">
+
+            <label for="smtpPort">Smtp port</label>
+            <input th:field="*{smtpPort}" name="smtpPort" type="text" id="smtpPort"
+                   th:placeholder="${appsetting.smtpPort}">
+
+            <label for="smtpUsername">Smtp Username</label>
+            <input th:field="*{smtpUsername}" name="smtpUsername" type="text" id="smtpUsername"
+                   th:placeholder="${appsetting.smtpUsername}">
+
+            <label for="smtpPassword">Mot de passe Smtp</label>
+            <input th:field="*{smtpPassword}" name="smtpPassword" type="text" id="smtpPassword" placeholder="*****">
+        </div>
+
+        <div class="form-buttons">
+            <button class="btn save" type="submit">Mettre a jour</button>
+        </div>
+    </form>
+
+    <p id="post-message" th:if="${message}" th:text="${message}"></p>
+</div>

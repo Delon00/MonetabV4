@@ -10,7 +10,7 @@ import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,7 @@ public class HomeController {
         } else if (schoolService.existingSchool()==null) {
             model.addAttribute("school", new SchoolDTO());
             return "init/schoolInit";
-        } else {return "redirect:auth";}
+        } else {return "redirect:home";}
     }
 
 

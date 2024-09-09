@@ -2,30 +2,35 @@ package ci.digitalacademy.monetab;
 
 import ci.digitalacademy.monetab.services.AppSettingService;
 import ci.digitalacademy.monetab.services.Impl.StudentServiceImpl;
-import ci.digitalacademy.monetab.services.Impl.UserServiceImpl;
+import ci.digitalacademy.monetab.services.UserService;
 import ci.digitalacademy.monetab.services.RoleUserService;
 import ci.digitalacademy.monetab.services.SchoolService;
 
+import ci.digitalacademy.monetab.services.dto.UserDTO;
+import ci.digitalacademy.monetab.services.dto.RoleUserDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.Instant;
 
 
 @SpringBootApplication
+@RequiredArgsConstructor
 public class MonetabApplication implements CommandLineRunner {
 
-    @Autowired
-    private UserServiceImpl userService;
-    @Autowired
-    private StudentServiceImpl studentService;
+
+    private final UserService userService;
+    private final StudentServiceImpl studentService;
     @Autowired
     private AppSettingService appSettingService;
-    @Autowired
-    private SchoolService schoolService;
-    @Autowired
-    private RoleUserService roleUserService;
+
+    private final SchoolService schoolService;
+    private final RoleUserService roleUserService;
+    public final BCryptPasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(MonetabApplication.class, args);
@@ -33,18 +38,29 @@ public class MonetabApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+
+
+
 /*
 
+                UserDTO user1 = new UserDTO();
+        user1.setPseudo("admin");
+        String password = passwordEncoder.encode("admin");
+        user1.setPassword(password);
+        user1.setCreationDate(Instant.now());
+        //user1.setRole(roleUserDTOList.get(0));
+        userService.save(user1);
 
 
-        AppSettingDTO appSettingDTO = new AppSettingDTO();
-        appSettingDTO.setSmtpServer("mail");
-        appSettingDTO.setSmtpUsername("ada");
-        appSettingDTO.setSmtpPassword("ada123");
-        appSettingDTO.setSmtpPort(587);
-        appSettingService.initApp(appSettingDTO);
+        UserDTO user2 = new UserDTO();
+            user2.setPseudo("user");
+            String password2 = passwordEncoder.encode("admin");
+            user2.setPassword(password2);
+            user2.setCreationDate(Instant.now());
+            user2.setRole(roleUserDTOList.get(1));
+            userService.save(user2);
 
-        // Initialize students
         StudentDTO student1 = new StudentDTO();
         student1.setLastName("Koffi");
         student1.setFirstName("Paul");
@@ -54,12 +70,6 @@ public class MonetabApplication implements CommandLineRunner {
         student1.setUrlPicture("public/img/zsjhghdfqshj.png");
         student1.setPhoneNumberFather("012089");
         studentService.save(student1);
-
-        SchoolDTO schoolDTO = new SchoolDTO();
-        schoolDTO.setName("ada");
-        schoolDTO.setUrlLogo("https://img.icons8.com/?size=100&id=RWH5eUW9Vr7f&format=png&color=000000");
-        schoolDTO.setAppSetting(appSettingDTO);
-        schoolService.initSchool(schoolDTO);
 
 */
     }

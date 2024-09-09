@@ -1,18 +1,17 @@
 package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.services.*;
-import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
-import ci.digitalacademy.monetab.services.dto.RoleUserDTO;
+import ci.digitalacademy.monetab.services.dto.*;
 import ci.digitalacademy.monetab.services.dto.SchoolDTO;
-import ci.digitalacademy.monetab.services.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,22 +24,26 @@ public class SchoolController {
     private final AppService appService;
     private final AppSettingService appSettingService;
     private final SchoolService schoolService;
-    private final UserService userService;
-    private final RoleUserService roleUserService;
+
+
+
+    @GetMapping("/school")
+    public String showSchoolSetting(Model model){
+        SchoolDTO school = schoolService.existingSchool();
+        if (school == null) {school = new SchoolDTO();}
+        model.addAttribute("school", school);
+
+        return "settings/schoolSettings";
+    }
 
     @PostMapping
     public String saveSchoolSettings(SchoolDTO schoolDTO, Model model) {
         log.debug("Request to save SchoolSettings");
-
         schoolService.save(schoolDTO);
-
         List<RoleUserDTO> roleUserDTOList = createRoleUser();
         appService.initRoles(roleUserDTOList);
 
-        List<UserDTO> userDTOList = createUser(roleUserDTOList);
-        userService.initUser(userDTOList);
-
-        return "redirect:/auth";
+        return "redirect:/home";
     }
 
     public List<RoleUserDTO> createRoleUser() {
@@ -57,24 +60,21 @@ public class SchoolController {
         return roleUserDTOList;
     }
 
-    public List<UserDTO> createUser(List<RoleUserDTO> roleUserDTOList) {
-        List<UserDTO> userDTOList = new ArrayList<>();
+    @PostMapping("/updateSchoolSetting")
+    public String updateAppSetting(Model model, @ModelAttribute("schoolsetting") SchoolDTO school) {
+        log.debug("Request to update App settings with ID: {}", school.getId());
 
-        UserDTO userAdmin = new UserDTO();
-        userAdmin.setPseudo("admin");
-        userAdmin.setPassword("admin");
-        userAdmin.setCreationDate(Instant.now());
-        userAdmin.setRole(roleUserDTOList.get(0));
-        userDTOList.add(userAdmin);
+        try {
+            schoolService.update(school);
+            model.addAttribute("message", "Les paramètres de l'école ont été mis à jour avec succès.");
+        } catch (Exception e) {
+            log.error("Erreur lors de la mise à jour des paramètres", e);
+            model.addAttribute("error", "Erreur lors de la mise à jour des paramètres.");
+        }
 
-        UserDTO userUser = new UserDTO();
-        userUser.setPseudo("user");
-        userUser.setPassword("user");
-        userUser.setCreationDate(Instant.now());
-        userUser.setRole(roleUserDTOList.get(1));
-        userDTOList.add(userUser);
-
-        return userDTOList;
+        return "redirect:/home";
     }
+
+
 
 }

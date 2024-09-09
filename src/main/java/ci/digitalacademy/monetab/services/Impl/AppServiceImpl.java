@@ -41,6 +41,6 @@ public class AppServiceImpl implements AppService {
         userDTO.setCreationDate(Instant.now());
         userDTO.setRole(roleUserDTO.get(0));
 
-        userDTOS.add(userDTO);
+        //userDTOS.add(userDTO);
     }
 }

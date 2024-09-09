@@ -39,7 +39,7 @@ label{
     text-align: center;
 }
 .login-btn{
-    width: 90%;
+    width: 100%;
     margin: 1.5rem 0;
     border-radius: 5px;
     border: 1px solid #000;
@@ -98,7 +98,7 @@ label{
 }
 .sidebar-link-container li{
     list-style: none;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     cursor: pointer;
 }
 .card-container{
@@ -349,6 +349,15 @@ input[type="radio"] {
         border-radius: 8px;
         background-color: #f9f9f9;
 }
+.init-form-update{
+            margin: 0.5rem auto;
+            padding: 20px;
+            min-width:300px;
+            max-width:500px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+}
 .search-bar{
     border-radius:25px;
     border:1px solid #000;
@@ -378,7 +387,7 @@ input[type="radio"] {
     justify-content:flex-start;
     align-items:center;
 }
-.section-logo h1{color:#fff;}
+.section-Logo h1{color:#fff;}
 .logoApp{
     width:50px;
     height:50px;

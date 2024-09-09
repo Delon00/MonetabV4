@@ -57,7 +57,7 @@ public class UserController {
         Optional<UserDTO> user = userService.findOne(id);
         if (user.isPresent()){
             model.addAttribute("user", user.get());
-            return "student/modifyUserForm";
+            return "user/modifyUser";
         }
         else {
             return "redirect:/users";
@@ -82,6 +82,12 @@ public class UserController {
         userService.delete(id);
         model.addAttribute("message", "Utilisateur supprimé avec succès!");
 
+        return "redirect:/home";
+    }
+
+    @GetMapping("/desactivate/{id}")
+    public String desactivateUser(@PathVariable("id")Long id,Model model)
+    {
         return "redirect:/home";
     }
 }

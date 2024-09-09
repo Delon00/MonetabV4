@@ -48,8 +48,6 @@ public class StudentController {
         //studentDTO.setBirthday(Instant.now());
         //Instant birthdayInstant = convertToInstant(studentDTO.getBirthday());
         //studentDTO.setBirthday(birthdayInstant);
-
-
         studentService.save(studentDTO);
         model.addAttribute("message", "Élève ajouté avec succès!");
 

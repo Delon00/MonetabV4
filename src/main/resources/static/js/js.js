@@ -45,6 +45,10 @@ function loadSection(section) {
              break;
         case 'page-rapport':sectionUrl = 'reports';
             break;
+        case 'app-parametre':sectionUrl = 'appsetting/app';
+            break;
+        case 'school-parametre':sectionUrl = 'schoolsetting/school';
+            break;
         default:
             sectionUrl = '';
     }
@@ -143,6 +147,16 @@ function openModifyUser(id) {
         .then(html => {
             document.getElementById('main-content').innerHTML = html;
             showSection(event, 'form-user-modify');
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function desactivateUser(id) {
+    fetch('/users/desactivate/' + id)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('main-content').innerHTML = html;
+            showSection(event, 'page-utilisateur');
         })
         .catch(error => console.error('Error:', error));
 }

@@ -19,7 +19,8 @@
         <div th:each="user : ${users}" class="row">
             <p th:text="${user.pseudo}"></p>
             <p th:text="${user.creationDate}"></p>
-            <button type="button" onclick="openModifyUser()">Modifier</button>
+            <button type="button" th:onclick="'openModifyUser(' + ${user.id} + ')'">Modifier</button>
+            <button type="button" th:onclick="'desactivateUser(' + ${user.id} + ')'">Désactiver</button>
         </div>
     </div>
 

@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.models.StudentCards;
 import ci.digitalacademy.monetab.services.StudentCardsService;
 import ci.digitalacademy.monetab.services.TeacherService;
 import ci.digitalacademy.monetab.services.dto.StudentCardsDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/studentcard")
 @Slf4j
+@RequiredArgsConstructor
 public class StudentCardController {
 
-    @Autowired
-    private  StudentCardsService studentCardsService;
+    private final StudentCardsService studentCardsService;
 
     @GetMapping
     public String showListStudentCard(Model model){
