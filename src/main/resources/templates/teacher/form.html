@@ -14,14 +14,16 @@
                 <label for="firstname">Prénom</label>
                 <input th:field="*{firstName}" type="text" id="firstname" placeholder="Entrez le prénom">
 
-                <!--<div class="radio-group">
-                    <label>
-                        <input th:field="*{genre}" type="radio" value="H"> Homme
-                    </label>
-                    <label>
-                        <input th:field="*{genre}" type="radio" value="F"> Femme
-                    </label>
-                </div>-->
+                <div class="radio-group">
+                    <label id="genre" class="mr-5">Genre</label>
+                    <select name="genre" id="" class="form-control" th:field="*{gender}">
+                        <option
+                                th:each="enumGenre : ${genres}"
+                                th:value="${enumGenre.name()}"
+                                th:text="${enumGenre.name()}"
+                        ></option>
+                    </select>
+                </div>
 
                 <label for="speciality">Spécialité</label>
                 <input th:field="*{speciality}" type="text" id="speciality" placeholder="Entrez la spécialité du professeur">

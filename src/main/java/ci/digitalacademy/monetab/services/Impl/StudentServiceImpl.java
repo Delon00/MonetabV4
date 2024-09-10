@@ -1,5 +1,6 @@
 package ci.digitalacademy.monetab.services.Impl;
 
+import ci.digitalacademy.monetab.models.Gender;
 import ci.digitalacademy.monetab.models.Student;
 import ci.digitalacademy.monetab.repositories.StudentRepository;
 import ci.digitalacademy.monetab.services.StudentService;
@@ -64,6 +65,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void delete(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<StudentDTO> findByLastNameOrGenderOrMatricule(String query, Gender gender) {
+        List<Student> students = studentRepository.findByLastNameIgnoreCaseOrMatriculeIgnoreCaseAndGender(query, query, gender);
+        return students.stream().map(student -> studentMapper.toDto(student)).toList();
     }
 
     @Override

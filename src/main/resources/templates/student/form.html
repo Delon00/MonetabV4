@@ -12,14 +12,16 @@
                 <label for="firstname">Prénom</label>
                 <input th:field="*{firstName}"name="firstname" type="text" id="firstname" placeholder="Entrez le prénom">
 
-                <!--<div class="radio-group">
-                    <label>
-                        <input th:field="*{genre}" type="radio" name="gender" value="H"> Homme
-                    </label>
-                    <label>
-                        <input th:field="*{genre}"type="radio" name="gender" value="F"> Femme
-                    </label>
-                </div>-->
+                <div class="radio-group">
+                    <label id="genre">Genre</label>
+                    <select name="genre" id="" class="form-control" th:field="*{gender}">
+                        <option
+                                    th:each="enumGenre : ${genres}"
+                                    th:value="${enumGenre.name()}"
+                                    th:text="${enumGenre.name()}"
+                        ></option>
+                        </select>
+                </div>
 
                 <label for="matricule">Matricule</label>
                 <input th:field="*{matricule}"name="matricule" type="text" id="matricule" placeholder="Entrez le matricule">
@@ -27,14 +29,7 @@
             </div>
 
             <div class="right-form">
-                <!--
-                <label for="classe">Classe</label>
-                 <select th:field="*{classe}"name="classe" id="classe">
-                     <option value="">---Sélectionner la classe---</option>
-                     <option value="2nd">2nd</option>
-                     <option value="1re">1re</option>
-                     <option value="Tle">Tle</option>
-                 </select>-->
+
 
                  <label for="tel">Numéro de téléphone</label>
                  <input th:field="*{phoneNumber}"type="tel" name="tel" id="tel" placeholder="Entrez le numéro de téléphone">
@@ -48,7 +43,6 @@
          </div>
 
          <div class="form-buttons">
-             <button class="btn cancel" type="button">Annuler</button>
              <button class="btn save" type="submit">Enregistrer</button>
          </div>
      </form>

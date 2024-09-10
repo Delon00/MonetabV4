@@ -1,5 +1,6 @@
 package ci.digitalacademy.monetab.controller;
 
+import ci.digitalacademy.monetab.models.Gender;
 import ci.digitalacademy.monetab.models.Student;
 
 import ci.digitalacademy.monetab.services.StudentService;
@@ -86,5 +87,16 @@ public class StudentController {
         model.addAttribute("message", "Élève supprimé avec succès!");
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/search")
+    public String searchStudents(@RequestParam String query  , @RequestParam Gender gender, Model model)
+    {
+        List<StudentDTO> students = studentService.findByLastNameOrGenderOrMatricule(query , gender);
+        model.addAttribute("students", students);
+        model.addAttribute("query", query);
+        model.addAttribute("gender", gender);
+
+        return "redirect:/students";
     }
 }

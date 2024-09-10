@@ -1,5 +1,6 @@
 package ci.digitalacademy.monetab.services;
 
+import ci.digitalacademy.monetab.models.Gender;
 import ci.digitalacademy.monetab.models.Student;
 import ci.digitalacademy.monetab.services.dto.StudentDTO;
 
@@ -13,6 +14,6 @@ public interface StudentService {
     StudentDTO update(StudentDTO studentDTO);
     List<StudentDTO> findAll();
     void delete(Long id);
-
+    List<StudentDTO> findByLastNameOrGenderOrMatricule(String query, Gender gender);
     long countStudents();
 }

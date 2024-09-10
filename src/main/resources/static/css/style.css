@@ -370,6 +370,13 @@ input[type="radio"] {
     margin:2rem 0;
     overflow:hidden;
 }
+.search-bar select{
+    margin-bottom:0px;
+}
+.search-bar button{
+    background-color:transparent;
+    border:none;
+}
 .search-bar input{
     border:none;
     margin-bottom:0;
