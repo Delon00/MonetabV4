@@ -3,7 +3,9 @@ package ci.digitalacademy.monetab.controller;
 
 
 
+import ci.digitalacademy.monetab.models.Gender;
 import ci.digitalacademy.monetab.services.TeacherService;
+import ci.digitalacademy.monetab.services.dto.StudentDTO;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +50,7 @@ public class TeacherController {
         teacherService.save(teacher);
         model.addAttribute("message", "Professeur ajouté avec succès!");
         //return "redirect:/teachers";
-        return "dashboard/home";
+        return "redirect:/home";
     }
 
     @GetMapping("/modify/{id}")
@@ -82,6 +84,17 @@ public class TeacherController {
         model.addAttribute("message", "Professeur supprimé avec succès!");
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/search")
+    public String searchTeacher(@RequestParam String query  , @RequestParam Gender gender, Model model)
+    {
+        List<TeacherDTO> teachers = teacherService.findByLastNameOrGenderOrSpeciality(query , gender);
+        model.addAttribute("teacher", teachers);
+        model.addAttribute("query", query);
+        model.addAttribute("gender", gender);
+
+        return "redirect:/teachers";
     }
 
 }

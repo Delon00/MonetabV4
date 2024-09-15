@@ -1,5 +1,6 @@
 package ci.digitalacademy.monetab.services.dto;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,8 @@ import lombok.Setter;
 public class AppSettingDTO {
     private Long id;
     private String smtpServer;
-    private int smtpPort;
+    private Integer smtpPort;
     private String smtpUsername;
     private String smtpPassword;
+    private String slug;
 }

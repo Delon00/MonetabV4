@@ -14,9 +14,10 @@ public class AppSetting implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(unique = true)
+    private String slug;
     private String smtpServer;
-    private int smtpPort;
+    private Integer smtpPort;
     private String smtpUsername;
     private String smtpPassword;
 

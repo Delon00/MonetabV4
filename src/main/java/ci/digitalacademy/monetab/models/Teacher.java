@@ -10,6 +10,7 @@ public class Teacher extends Person {
     private boolean available;
     private String speciality;
 
+
     @ManyToOne
     @JoinColumn(name = "school_id")
     private School school;

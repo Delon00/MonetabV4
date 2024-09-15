@@ -19,6 +19,8 @@ public class StudentCards implements Serializable {
     private String reference;
     private Date issueDate;
     private Date expirationDate;
+    @Column(unique = true)
+    private String slug;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

@@ -13,4 +13,5 @@ public interface SchoolService {
     void delete(Long id);
     SchoolDTO initSchool(SchoolDTO schoolDTO);
     SchoolDTO existingSchool();
+    Optional<SchoolDTO> findOneSchoolBySlug(String slug);
 }

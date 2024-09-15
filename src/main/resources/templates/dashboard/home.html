@@ -30,6 +30,8 @@
                     <li><a class="sidebar-link" href="#page-rapport" onclick="showSection(event, 'page-rapport')">Rapport</a></li>
                     <li><a class="sidebar-link" href="#app-parametre" onclick="showSection(event, 'app-parametre')">Parametre de l'application</a></li>
                     <li><a class="sidebar-link" href="#school-parametre" onclick="showSection(event, 'school-parametre')">Parametre de l'école</a></li>
+                    <li><a class="sidebar-link" th:href="@{/swagger-ui/index.html}"target="_blank">Documentation Swagger</a></li>
+                    <li><a class="sidebar-link" th:href="@{https://documenter.getpostman.com/view/28598639/2sAXqp844J}" target="_blank">Documentation Postman</a></li>
                 </ul>
             </div>
             <div>
@@ -39,6 +41,7 @@
         </div>
         <div class="page-dash" id="main-content"></div>
     </section>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
     <script th:src="@{js/js.js}"></script>
     <script th:src="@{js/ajax.js}"></script>
 </body>

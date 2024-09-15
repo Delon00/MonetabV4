@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/appsetting")
 @Slf4j
@@ -49,11 +47,11 @@ public class AppSettingController {
     }
 
     @PostMapping("/updateAppSetting")
-    public String updateAppSetting(Model model, @ModelAttribute("appsetting") AppSettingDTO appSettingDTO) {
+    public String updateAppSetting(Model model, @ModelAttribute("appsetting") AppSettingDTO appSettingDTO,Long id) {
         log.debug("Request to update App settings with ID: {}", appSettingDTO.getId());
 
         try {
-            appSettingService.update(appSettingDTO);
+            appSettingService.update(appSettingDTO, id);
             model.addAttribute("message", "Les paramètres ont été mis à jour avec succès.");
         } catch (Exception e) {
             log.error("Erreur lors de la mise à jour des paramètres", e);

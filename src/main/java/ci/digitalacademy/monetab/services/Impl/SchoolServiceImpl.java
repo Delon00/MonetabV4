@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.repositories.SchoolRepository;
 import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import ci.digitalacademy.monetab.services.mapper.SchoolMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public SchoolDTO save(SchoolDTO schoolDTO) {
         log.debug("Request to save School : {}", schoolDTO);
+        final String slug = SlugifyUtils.genereate(String.valueOf(schoolDTO.getName()));
+        schoolDTO.setSlug(slug);
         School school = schoolMapper.toEntity(schoolDTO);
         school = schoolRepository.save(school);
         return schoolMapper.toDto(school);
@@ -74,6 +77,20 @@ public class SchoolServiceImpl implements SchoolService {
         log.debug("Request to check existing school");
         List<SchoolDTO> schoolDTO = findAll();
         return schoolDTO.stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public Optional<SchoolDTO> findOneSchoolBySlug(String slug) {
+        log.debug("Request to get School by slug: {}", slug);
+        return schoolRepository.findBySlug(slug).map(schoolMapper::toDto)
+                .map(schoolDTO -> {
+                    log.info("School found: {}", schoolDTO);
+                    return schoolDTO;
+                })
+                .or(() -> {
+                    log.warn("School not found for slug: {}", slug);
+                    return Optional.empty();
+                });
     }
 
 }

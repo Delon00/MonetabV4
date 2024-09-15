@@ -12,4 +12,5 @@ public interface StudentCardsService {
     List<StudentCardsDTO> findAll();
     void delete(Long id);
     long countStudentCards();
+    Optional<StudentCardsDTO> findOneStudentCardsBySlug(String slug);
 }

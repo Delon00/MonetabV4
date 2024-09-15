@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.repositories.StudentCardsRepository;
 import ci.digitalacademy.monetab.services.StudentCardsService;
 import ci.digitalacademy.monetab.services.dto.StudentCardsDTO;
 import ci.digitalacademy.monetab.services.mapper.StudentCardsMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class StudentCardsServiceImpl implements StudentCardsService {
     @Override
     public StudentCardsDTO save(StudentCardsDTO studentCardsDTO) {
         log.debug("Request to save StudentCard : {}", studentCardsDTO);
+        final String slug = SlugifyUtils.genereate(String.valueOf(studentCardsDTO.getStudent()));
+        studentCardsDTO.setSlug(slug);
         StudentCards studentCards = studentCardsMapper.toEntity(studentCardsDTO);
         studentCards = studentCardsRepository.save(studentCards);
         return studentCardsMapper.toDto(studentCards);
@@ -67,5 +70,19 @@ public class StudentCardsServiceImpl implements StudentCardsService {
     @Override
     public long countStudentCards() {
         return studentCardsRepository.count();
+    }
+
+    @Override
+    public Optional<StudentCardsDTO> findOneStudentCardsBySlug(String slug) {
+        log.debug("Request to get StudentCards by slug: {}", slug);
+        return studentCardsRepository.findBySlug(slug).map(studentCardsMapper::toDto)
+                .map(studentCardsDTO -> {
+                    log.info("StudentCards found: {}", studentCardsDTO);
+                    return studentCardsDTO;
+                })
+                .or(() -> {
+                    log.warn("StudentCards not found for slug: {}", slug);
+                    return Optional.empty();
+                });
     }
 }

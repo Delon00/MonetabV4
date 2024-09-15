@@ -5,6 +5,7 @@ import ci.digitalacademy.monetab.repositories.AppSettingRepository;
 import ci.digitalacademy.monetab.services.AppSettingService;
 import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
 import ci.digitalacademy.monetab.services.mapper.AppSettingMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class AppSettingServiceImpl implements AppSettingService {
     public AppSettingDTO save(AppSettingDTO appSettingDTO) {
         log.debug("Request to save AppSetting : {}", appSettingDTO);
         AppSetting appSetting = appSettingMapper.toEntity(appSettingDTO);
+        final String slug = SlugifyUtils.genereate(String.valueOf(appSetting.getSmtpUsername()));
+        appSetting.setSlug(slug);
         appSetting = appSettingRepository.save(appSetting);
         return appSettingMapper.toDto(appSetting);
     }
@@ -37,7 +40,7 @@ public class AppSettingServiceImpl implements AppSettingService {
     }
 
     @Override
-    public AppSettingDTO update(AppSettingDTO appSettingDTO) {
+    public AppSettingDTO update(AppSettingDTO appSettingDTO, Long id) {
         log.debug("Request to update AppSetting : {}", appSettingDTO);
         return findOne(appSettingDTO.getId())
                 .map(existingAppSetting -> {
@@ -83,6 +86,20 @@ public class AppSettingServiceImpl implements AppSettingService {
     @Override
     public List<AppSettingDTO> findAllBySmtpUsername(String smtpUsername) {
         return List.of();
+    }
+
+    @Override
+    public Optional<AppSettingDTO> findOneAppSettingBySlug(String slug) {
+        log.debug("Request to get AppSetting by slug: {}", slug);
+        return appSettingRepository.findBySlug(slug).map(appSettingMapper::toDto)
+                .map(appSettingDTO -> {
+                    log.info("AppSetting found: {}", appSettingDTO);
+                    return appSettingDTO;
+                })
+                .or(() -> {
+                    log.warn("AppSetting not found for slug: {}", slug);
+                    return Optional.empty();
+                });
     }
 
 

@@ -16,6 +16,9 @@ public class RoleUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true)
+    private String slug;
+
     private String role;
 
     @OneToMany(mappedBy = "role")

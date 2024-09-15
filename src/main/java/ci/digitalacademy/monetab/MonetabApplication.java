@@ -41,10 +41,16 @@ public class MonetabApplication implements CommandLineRunner {
 
 
 
-
 /*
+        UserDTO user1 = new UserDTO();
+        user1.setPseudo("admin");
+        String password = passwordEncoder.encode("admin");
+        user1.setPassword(password);
+        user1.setCreationDate(Instant.now());
+        //user1.setRole(roleUserDTOList.get(0));
+        userService.save(user1);
 
-                UserDTO user1 = new UserDTO();
+        UserDTO user1 = new UserDTO();
         user1.setPseudo("admin");
         String password = passwordEncoder.encode("admin");
         user1.setPassword(password);
@@ -61,15 +67,7 @@ public class MonetabApplication implements CommandLineRunner {
             user2.setRole(roleUserDTOList.get(1));
             userService.save(user2);
 
-        StudentDTO student1 = new StudentDTO();
-        student1.setLastName("Koffi");
-        student1.setFirstName("Paul");
-        student1.setBirthday(String.valueOf(Instant.now()));
-        student1.setPhoneNumber("01401016");
-        student1.setMatricule("225ABJ00");
-        student1.setUrlPicture("public/img/zsjhghdfqshj.png");
-        student1.setPhoneNumberFather("012089");
-        studentService.save(student1);
+
 
 */
     }

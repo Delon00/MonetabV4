@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
-import java.util.Date;
+
 
 @Entity
 @Data
@@ -18,7 +18,12 @@ public class User {
 
     private String password;
 
+    private boolean disable;
+
     private Instant creationDate;
+
+    @Column(unique = true)
+    private String slug;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")

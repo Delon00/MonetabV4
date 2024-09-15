@@ -1,5 +1,7 @@
 package ci.digitalacademy.monetab.services;
 
+import ci.digitalacademy.monetab.models.Gender;
+import ci.digitalacademy.monetab.services.dto.StudentDTO;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
 
 import java.util.List;
@@ -11,6 +13,7 @@ public interface TeacherService {
     TeacherDTO update(TeacherDTO teacherDTO);
     List<TeacherDTO> findAll();
     void delete(Long id);
-
+    List<TeacherDTO> findByLastNameOrGenderOrSpeciality(String query, Gender gender);
     long countTeachers();
+    Optional<TeacherDTO> findOneTeacherBySlug(String slug);
 }

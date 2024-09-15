@@ -1,10 +1,12 @@
 package ci.digitalacademy.monetab.services.Impl;
 
+import ci.digitalacademy.monetab.models.Gender;
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.repositories.TeacherRepository;
 import ci.digitalacademy.monetab.services.TeacherService;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
 import ci.digitalacademy.monetab.services.mapper.TeacherMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public TeacherDTO save(TeacherDTO teacherDTO) {
         log.debug("Request to save Teacher : {}", teacherDTO);
+        final String slug = SlugifyUtils.genereate(teacherDTO.getLastName().toString());
+        teacherDTO.setSlug(slug);
         Teacher teacher = teacherMapper.toEntity(teacherDTO);
         teacher = teacherRepository.save(teacher);
         return teacherMapper.toDto(teacher);
@@ -66,7 +70,30 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public List<TeacherDTO> findByLastNameOrGenderOrSpeciality(String query, Gender gender) {
+        List<Teacher> teachers = teacherRepository.findByLastNameIgnoreCaseOrSpecialityIgnoreCaseAndGender(query, query, gender);
+        return teachers.stream().map(teacher -> teacherMapper.toDto(teacher)).toList();
+    }
+
+
+
+    @Override
     public long countTeachers() {
         return teacherRepository.count();
     }
+
+    @Override
+    public Optional<TeacherDTO> findOneTeacherBySlug(String slug) {
+        log.debug("Request to get Teacher by slug: {}", slug);
+        return teacherRepository.findBySlug(slug).map(teacherMapper::toDto)
+                .map(teacherDTO -> {
+                    log.info("Teacher found: {}", teacherDTO);
+                    return teacherDTO;
+                })
+                .or(() -> {
+                    log.warn("Teacher not found for slug: {}", slug);
+                    return Optional.empty();
+                });
+    }
+
 }

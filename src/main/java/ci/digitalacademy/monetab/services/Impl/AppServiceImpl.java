@@ -40,7 +40,5 @@ public class AppServiceImpl implements AppService {
         userDTO.setPassword("admin");
         userDTO.setCreationDate(Instant.now());
         userDTO.setRole(roleUserDTO.get(0));
-
-        //userDTOS.add(userDTO);
     }
 }

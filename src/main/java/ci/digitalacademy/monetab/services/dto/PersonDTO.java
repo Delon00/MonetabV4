@@ -17,5 +17,8 @@ public class PersonDTO {
     private String phoneNumber;
     private String urlPicture;
     private Gender gender;
+    private String slug;
+    private UserDTO user;
     private AddressDTO address;
+
 }

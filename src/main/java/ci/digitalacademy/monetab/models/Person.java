@@ -1,5 +1,6 @@
 package ci.digitalacademy.monetab.models;
 
+import ci.digitalacademy.monetab.services.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.Instant;
@@ -21,13 +22,15 @@ public class Person {
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
     private String birthday;
 
     @Column(nullable = false)
     private String phoneNumber;
 
     private String urlPicture;
+
+    @Column(unique = true)
+    private String slug;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -38,4 +41,5 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
 }

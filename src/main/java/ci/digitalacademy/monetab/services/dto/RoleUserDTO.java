@@ -8,4 +8,5 @@ import lombok.Setter;
 public class RoleUserDTO {
     private Long id;
     private String role;
+    private String slug;
 }

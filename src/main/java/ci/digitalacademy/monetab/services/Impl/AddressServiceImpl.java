@@ -1,14 +1,18 @@
 package ci.digitalacademy.monetab.services.Impl;
 
+import ci.digitalacademy.monetab.models.Absence;
 import ci.digitalacademy.monetab.models.Address;
 import ci.digitalacademy.monetab.repositories.AdressRepository;
 import ci.digitalacademy.monetab.services.AddressService;
 import ci.digitalacademy.monetab.services.dto.AddressDTO;
 import ci.digitalacademy.monetab.services.mapper.AddressMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,6 +28,8 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressDTO save(AddressDTO addressDTO) {
         log.debug("Request to save Address : {}", addressDTO);
+        final String slug = SlugifyUtils.genereate(String.valueOf(addressDTO.getStreet()));
+        addressDTO.setSlug(slug);
         Address address = addressMapper.toEntity(addressDTO);
         address = addressRepository.save(address);
         return addressMapper.toDto(address);
@@ -36,7 +42,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressDTO update(AddressDTO addressDTO) {
+    public AddressDTO update(AddressDTO addressDTO, Long id) {
         return findOne(addressDTO.getId())
                 .map(existingAddress -> {
                     existingAddress.setCity(addressDTO.getCity());
@@ -57,5 +63,30 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void delete(Long id) {
         addressRepository.deleteById(id);
+    }
+
+    @Override
+    public AddressDTO saveAddress(AddressDTO addressDTO) {
+        final String slug = SlugifyUtils.genereate(addressDTO.getCity().toString());
+        addressDTO.setSlug(slug);
+
+        Address address = addressMapper.toEntity(addressDTO);
+
+        Address savedAbsence = addressRepository.save(address);
+        return addressMapper.toDto(savedAbsence);
+    }
+
+    @Override
+    public Optional<AddressDTO> findOneAddressBySlug(String slug) {
+        log.debug("Request to get Address by slug: {}", slug);
+        return addressRepository.findBySlug(slug).map(addressMapper::toDto)
+                .map(addressDTO -> {
+                    log.info("Address found: {}", addressDTO);
+                    return addressDTO;
+                })
+                .or(() -> {
+                    log.warn("Address not found for slug: {}", slug);
+                    return Optional.empty();
+                });
     }
 }

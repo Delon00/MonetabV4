@@ -18,6 +18,9 @@ public class School {
     private String name;
     private String urlLogo;
 
+    @Column(unique = true)
+    private String slug;
+
     @OneToMany(mappedBy = "school")
     private List<Teacher> teachers;
 

@@ -17,7 +17,10 @@ public class Absence {
     private int id;
 
     private Date absenceDate;
-    private int absenceNumber;
+    private Integer absenceNumber;
+
+    @Column(unique = true)
+    private String slug;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

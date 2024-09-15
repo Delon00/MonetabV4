@@ -50,11 +50,11 @@ public class SchoolController {
         List<RoleUserDTO> roleUserDTOList = new ArrayList<>();
 
         RoleUserDTO roleUserDTO1 = new RoleUserDTO();
-        roleUserDTO1.setRole("ADMIN");
+        roleUserDTO1.setRole("ROLE_ADMIN");
         roleUserDTOList.add(roleUserDTO1);
 
         RoleUserDTO roleUserDTO2 = new RoleUserDTO();
-        roleUserDTO2.setRole("USER");
+        roleUserDTO2.setRole("ROLE_USER");
         roleUserDTOList.add(roleUserDTO2);
 
         return roleUserDTOList;

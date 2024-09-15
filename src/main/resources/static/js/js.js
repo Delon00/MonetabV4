@@ -157,6 +157,14 @@ function desactivateUser(id) {
         .then(html => {
             document.getElementById('main-content').innerHTML = html;
             showSection(event, 'page-utilisateur');
+
+            const onOffUserElement = document.getElementById('onOffUser');
+            if (onOffUserElement) {
+                onOffUserElement.style.backgroundColor = 'red';
+            }
         })
         .catch(error => console.error('Error:', error));
 }
+
+
+

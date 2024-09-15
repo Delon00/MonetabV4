@@ -5,14 +5,14 @@
             <span class="plus">+</span>Nouvel eleve
         </a>
     </div>
-    
+
     <form method="get" th:action="@{/students/search}" class="search-bar">
         <input class="form-control me-2 w-100" th:value="${query}" name="query" type="search" placeholder="RECHERCHE : (NOM , GENRE , MATRICULE)" aria-label="Search">
         <select name="gender"  class="form-control" th:value="${gender}">
             <option value="MAN" th:if="${gender == 'MAN'} ? 'selected':''">HOMME</option>
             <option value="WOMAN" th:if="${gender == 'WOMAN'} ? 'selected':''">FEMME</option>
         </select>
-        <button type="submit"><img th:src="@{images/search.png}" alt="" class="btn-search"></button>
+        <button onclick="showSection(event, 'page-eleve')" type="submit"><img th:src="@{images/search.png}" alt="" class="btn-search"></button>
     </form>
     <div class="tableau">
 

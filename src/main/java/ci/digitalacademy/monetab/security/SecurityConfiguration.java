@@ -27,6 +27,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/school-setting").permitAll()
                         .requestMatchers("/api/students").permitAll()
                         .requestMatchers("/api/students/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

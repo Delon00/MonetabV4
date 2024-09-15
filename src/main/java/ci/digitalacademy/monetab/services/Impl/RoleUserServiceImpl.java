@@ -5,12 +5,14 @@ import ci.digitalacademy.monetab.repositories.RoleUserRepository;
 import ci.digitalacademy.monetab.services.RoleUserService;
 import ci.digitalacademy.monetab.services.dto.RoleUserDTO;
 import ci.digitalacademy.monetab.services.mapper.RoleUserMapper;
+import ci.digitalacademy.monetab.utils.SlugifyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +26,8 @@ public class RoleUserServiceImpl implements RoleUserService {
     @Override
     public RoleUserDTO save(RoleUserDTO roleUserDTO) {
         log.debug("Request to save RoleUser : {}", roleUserDTO);
+        final String slug = SlugifyUtils.genereate(String.valueOf(roleUserDTO.getRole()));
+        roleUserDTO.setSlug(slug);
         RoleUser roleUser = roleUserMapper.toEntity(roleUserDTO);
         roleUser = roleUserRepository.save(roleUser);
         return roleUserMapper.toDto(roleUser);
@@ -68,5 +72,26 @@ public class RoleUserServiceImpl implements RoleUserService {
             });
         }
         return findAll();
+    }
+
+    @Override
+    public List<RoleUserDTO> findByRole(String roleUser) {
+        return roleUserRepository.findByRole(roleUser).stream()
+                .map(roleUserMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<RoleUserDTO> findOneRoleUserBySlug(String slug) {
+        log.debug("Request to get Role user by slug: {}", slug);
+        return roleUserRepository.findBySlug(slug).map(roleUserMapper::toDto)
+                .map(roleUserDTO -> {
+                    log.info("Role user found: {}", roleUserDTO);
+                    return roleUserDTO;
+                })
+                .or(() -> {
+                    log.warn("Role user not found for slug: {}", slug);
+                    return Optional.empty();
+                });
     }
 }
